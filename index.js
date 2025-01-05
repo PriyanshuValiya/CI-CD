@@ -4,11 +4,6 @@ const PORT = 3000;
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 const methodoverhide = require("method-override");
-// const TelegramBot = require('node-telegram-bot-api');
-// const {Configuration, OpenAIApi} = require("openai");
-
-// const TOKEN = '6872487939:AAFOV48N-z1TzDXLJTbQR67dl8xkz4B2twg';
-// const OPENAI = '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';
 
 // Lines For Render index.ejs in browser.
 app.use(express.urlencoded({extended: true}));
@@ -68,22 +63,6 @@ app.delete("/insta/:id", (req, res) => {
   posts = posts.filter((bio) => id !== bio.id);
   res.redirect("/insta");
 });
-
-// const openai = new OpenAIApi(new Configuration({
-//   apikey: OPENAI,
-// }));
-
-// const bot = new TelegramBot(TOKEN, {polling: true});
-
-// bot.on('message',async (msg) => {
-//   const chatId = msg.chat.id;
-//   const reply = await OpenAIApi.createCompletion({
-//     max_token: 20,
-//     model: "ada",
-//     prompt: msg.text
-//   });
-//   bot.sendMessage(chatId, reply.data.choices[0].text);
-// });
 
 app.listen(PORT, () => {
     console.log(`Server in live on http:/localhost:${PORT}/insta`);
