@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram UI</title>
+    <style>
+      /* Basic Styling */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+      }
+
+      .page {
+        display: flex;
+      }
+
+      /* Navigation Bar */
+      .nav-bar {
+        width: 300px;
+        background-color: #1a1a1a;
+        border-right: 1px solid #333;
+        height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .nav-bar h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        font-style: italic;
+        color: #fff;
+        margin-bottom: 40px;
+      }
+
+      .nav-bar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .nav-bar ul li {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.3s;
+      }
+
+      .nav-bar ul li:hover {
+        color: #fff;
+      }
+
+      /* Main Content */
+      .main-page {
+        flex: 1;
+        padding: 40px;
+        max-width: 900px;
+        margin-left: 50px;
+      }
+
+      .head {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .info {
+        flex: 1;
+      }
+
+      .head1 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+      }
+
+      .h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #fff;
+      }
+
+      .aibtn {
+        padding: 8px 15px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+      }
+
+      .aibtn:hover {
+        background-color: #444;
+      }
+
+      .h3 {
+        display: flex;
+        gap: 20px;
+        font-size: 1rem;
+        color: #aaa;
+      }
+
+      .h3 h3 {
+        margin: 0;
+      }
+
+      /* Posts Section */
+      .posts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .post {
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .post:hover {
+        transform: scale(1.05);
+      }
+
+      .img {
+        width: 100%;
+        height: 200px;
+        background-color: #444;
+      }
+
+      .img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .user {
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .imgfoot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .imgfoot a {
+        text-decoration: none;
+        color: #bbb;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      .imgfoot a:hover {
+        color: #fff;
+      }
+
+      .imgfoot button {
+        padding: 5px 10px;
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s;
+      }
+
+      .imgfoot button:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Content -->
+      <div class="main-page">
+        <div class="head">
+          <div class="info">
+            <div class="head1">
+              <h2 class="h2">priyanshu_valiya</h2>
+            </div>
+            <div class="h3">
+              <h3><%= posts.length %> Posts</h3>
+              <h3>64 Followers</h3>
+              <h3>115 Following</h3>
+            </div>
+            <button class="aibtn" style="margin-top: 30px">
+              <a href="http://localhost:3000/insta/addpost" style="color: white; text-decoration: none;">Create Post </a>
+            </button>
+          </div>
+        </div>
+
+        <hr style="opacity: 0.2; width: 100%; margin-bottom: 30px" />
+        <br />
+
+        <div class="posts">
+          <% for (post of posts) { %>
+          <div class="post">
+            <div class="img">
+              <img src="<%= post.img %>" alt="Image" />
+            </div>
+            <h3 class="user">@<%= post.caption %></h3>
+            <div class="imgfoot">
+              <a href="insta/<%=post.id%>/detail">Detail</a>
+              <form method="post" action="insta/<%=post.id%>?_method=DELETE">
+                <button>Delete</button>
+              </form>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
